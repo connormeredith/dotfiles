@@ -1,0 +1,1 @@
+alias reset="clear && printf '\e[3J'"

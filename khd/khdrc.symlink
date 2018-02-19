@@ -1,0 +1,61 @@
+# Enable kwm compatibility mode
+#khd kwm on
+
+# Launch iTerm2
+ctrl - return             :    osascript -e 'tell application "iTerm2"' -e 'create window with default profile' -e 'end tell'
+
+ctrl - tab : khd -p "cmd - tab"
+
+# Restart kwm
+ctrl + shift - r : brew services restart kwm
+
+# Set Space Tiling Mode To BSP
+cmd + ctrl - a           :    kwmc space -t bsp
+
+# Set Space Tiling Mode To Monocle
+cmd + ctrl - s           :    kwmc space -t monocle
+
+# Set Space Tiling Mode To Floating
+cmd + ctrl - d           :    kwmc space -t float
+
+# Rotate Window-Tree By 90degrees (Clockwise)
+cmd + ctrl - r           :    kwmc tree rotate 90
+
+# Modify Container
+prefix - s               :    kwmc window -c split-mode toggle
+prefix - 0x32            :    kwmc window -c type toggle
+
+ctrl - h               :    kwmc window -c expand 0.05 west
+ctrl - j               :    kwmc window -c expand 0.05 south
+ctrl - k               :    kwmc window -c expand 0.05 north
+ctrl - l               :    kwmc window -c reduce 0.05 west
+
+prefix + shift - h       :    kwmc window -c reduce 0.05 west
+prefix + shift - j       :    kwmc window -c reduce 0.05 south
+prefix + shift - k       :    kwmc window -c reduce 0.05 north
+prefix + shift - l       :    kwmc window -c reduce 0.05 east
+
+# Set Temporary Window Container
+prefix - f               :    kwmc window -z fullscreen
+prefix - d               :    kwmc window -z parent
+prefix - w               :    kwmc window -t focused
+
+# Give Focus To Window
+ctrl - 0x7B : kwmc window -f west
+ctrl - 0x7C : kwmc window -f east
+ctrl - 0x7D : kwmc window -f south
+ctrl - 0x7E : kwmc window -f north
+
+# Swap Focused Window
+ctrl + shift - 0x7B : kwmc window -s west
+ctrl + shift - 0x7C : kwmc window -s east
+ctrl + shift - 0x7D : kwmc window -s south
+ctrl + shift - 0x7E : kwmc window -s north
+
+# Move Focused Window To Space
+ctrl + shift - 1 : kwmc window -m space 1
+ctrl + shift - 2 : kwmc window -m space 2
+ctrl + shift - 3 : kwmc window -m space 3
+ctrl + shift - 4 : kwmc window -m space 4
+ctrl + shift - 5 : kwmc window -m space 5
+
