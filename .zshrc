@@ -19,6 +19,7 @@ NVM_HOMEBREW=/opt/homebrew/opt/nvm/
 
 # Brew paths and auto-complete.
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 source $ZSH/oh-my-zsh.sh
