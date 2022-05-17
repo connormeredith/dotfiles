@@ -11,7 +11,7 @@ SPACESHIP_PROMPT_ORDER=(
   char
 )
 
-plugins=(git nvm)
+plugins=(git nvm pyenv)
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
 NVM_AUTOLOAD=1
@@ -21,6 +21,11 @@ NVM_HOMEBREW=/opt/homebrew/opt/nvm/
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 source $ZSH/oh-my-zsh.sh
 
