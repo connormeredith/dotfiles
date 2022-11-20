@@ -32,3 +32,6 @@ alias reset="clear && printf '\e[3J'"
 
 # Disable node repl history.
 export NODE_REPL_HISTORY=""
+
+# Python modules
+export PATH="$PATH:$HOME/Library/Python/3.9/bin"
