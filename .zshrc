@@ -14,7 +14,7 @@ SPACESHIP_PROMPT_ORDER=(
 plugins=(git nvm)
 
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
-zstyle ':omz:plguins:nvm' autoload true
+zstyle ':omz:plugins:nvm' autoload true
 NVM_HOMEBREW=/opt/homebrew/opt/nvm/
 
 # Brew paths and auto-complete.
