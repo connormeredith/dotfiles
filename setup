@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+for directory in ./*/; do
+  package=$(basename "$directory")
+  echo "Stowing $package"
+  stow "$package"
+done

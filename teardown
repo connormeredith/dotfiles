@@ -1,0 +1,8 @@
+
+#!/usr/bin/env bash
+
+for directory in ./*/; do
+  package=$(basename "$directory")
+  echo "Unstowing $package"
+  stow -D "$package"
+done
