@@ -1,18 +1,26 @@
+-- Line numbers.
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+-- Indentation
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
 vim.opt.smartindent = true
 
+-- Files.
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+-- Colors.
+vim.opt.termguicolors = true
+
+-- Search.
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+-- Editor.
 vim.opt.scrolloff = 10
+vim.opt.signcolumn = "yes"
 
-vim.opt.colorcolumn = "80"
-
-vim.g.mapleader = " "
