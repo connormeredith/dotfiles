@@ -24,7 +24,7 @@ FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 unsetopt share_history
 
@@ -35,3 +35,6 @@ export NODE_REPL_HISTORY=""
 
 # Python modules
 export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+
+# Scripts.
+export PATH="$PATH:$HOME/.local/bin"
