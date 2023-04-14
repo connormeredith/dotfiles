@@ -24,3 +24,7 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 
+-- Invisibles.
+vim.opt.list = true
+vim.opt.listchars:append "space:⋅"
+

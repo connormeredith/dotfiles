@@ -31,9 +31,9 @@ return require("packer").startup(function(use)
   }
 
   use({
-	  "nvim-telescope/telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     tag = '0.1.1',
-	  requires = {
+    requires = {
       "nvim-lua/plenary.nvim"
     }
   })
@@ -43,26 +43,26 @@ return require("packer").startup(function(use)
   use("tpope/vim-fugitive")
 
   use {
-	  "VonHeikemen/lsp-zero.nvim",
-	  branch = "v2.x",
-	  requires = {
-		  -- LSP support.
-		  "neovim/nvim-lspconfig",
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v2.x",
+    requires = {
+      -- LSP support.
+      "neovim/nvim-lspconfig",
       {
         "williamboman/mason.nvim",
           run = function()
             pcall(vim.cmd, "MasonUpdate")
           end,
         },
-		  "williamboman/mason-lspconfig.nvim",
+      "williamboman/mason-lspconfig.nvim",
 
-		  -- Auto-completion.
-		  "hrsh7th/nvim-cmp",
-		  "hrsh7th/cmp-nvim-lsp",
+      -- Auto-completion.
+      "hrsh7th/nvim-cmp",
+      "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
 
       -- Snippets.
-		  {"L3MON4D3/LuaSnip"},
-	  }
-	}
+      "L3MON4D3/LuaSnip",
+    }
+  }
 end)
