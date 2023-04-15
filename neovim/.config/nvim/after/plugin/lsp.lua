@@ -7,7 +7,8 @@ lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
   'lua_ls',
-  'pylsp'
+  'pylsp',
+  'bashls'
 })
 
 lsp.configure("lua_ls", {
