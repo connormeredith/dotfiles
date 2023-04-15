@@ -50,19 +50,35 @@ return require("packer").startup(function(use)
       "neovim/nvim-lspconfig",
       {
         "williamboman/mason.nvim",
-          run = function()
-            pcall(vim.cmd, "MasonUpdate")
-          end,
-        },
+        run = function()
+          pcall(vim.cmd, "MasonUpdate")
+        end,
+      },
       "williamboman/mason-lspconfig.nvim",
 
       -- Auto-completion.
       "hrsh7th/nvim-cmp",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+
+      -- Linters and formatters.
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+      },
 
       -- Snippets.
       "L3MON4D3/LuaSnip",
     }
+  }
+
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({
+        check_ts = true
+      })
+    end
   }
 end)
