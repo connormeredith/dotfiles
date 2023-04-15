@@ -1,14 +1,15 @@
-local lsp = require('lsp-zero')
+local lsp = require("lsp-zero")
 local null_ls = require("null-ls")
+local cmp = require("cmp")
 
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
-  'rust_analyzer',
-  'lua_ls',
-  'pylsp',
-  'bashls'
+  "tsserver",
+  "rust_analyzer",
+  "lua_ls",
+  "pylsp",
+  "bashls",
 })
 
 lsp.configure("lua_ls", {
@@ -22,6 +23,13 @@ lsp.configure("lua_ls", {
 })
 
 lsp.setup()
+
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
+  })
+})
 
 local null_opts = lsp.build_options("null-ls", {})
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
