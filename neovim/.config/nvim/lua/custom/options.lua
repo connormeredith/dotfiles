@@ -33,7 +33,10 @@ vim.opt.signcolumn = "yes"
 -- Invisibles.
 vim.opt.list = true
 vim.opt.listchars:append "space:⋅"
+vim.opt.listchars:append "eol:↵"
 
 -- Clipboard.
 vim.opt.clipboard:append("unnamedplus")
 
+-- EditorConfig
+vim.g.editorconfig = false
