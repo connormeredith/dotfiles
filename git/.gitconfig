@@ -1,0 +1,8 @@
+[include]
+  path = ~/.gitprofile
+
+[core]
+  excludesfile = ~/.gitglobalignore
+
+[init]
+  defaultBranch = main
