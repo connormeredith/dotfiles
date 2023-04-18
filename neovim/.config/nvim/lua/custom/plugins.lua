@@ -42,6 +42,8 @@ return require("packer").startup(function(use)
 
   use("tpope/vim-fugitive")
 
+  use("airblade/vim-gitgutter")
+
   use {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
