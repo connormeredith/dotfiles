@@ -16,10 +16,10 @@ lsp.configure("lua_ls", {
   settings = {
     Lua = {
       diagnostics = {
-        globals = { "vim" }
-      }
-    }
-  }
+        globals = { "vim" },
+      },
+    },
+  },
 })
 
 lsp.setup()
@@ -28,7 +28,7 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
     ["<C-Space>"] = cmp.mapping.complete(),
-  })
+  }),
 })
 
 local null_opts = lsp.build_options("null-ls", {})
@@ -52,17 +52,17 @@ null_ls.setup({
   end,
   sources = {
     null_ls.builtins.diagnostics.eslint.with({
-      only_local = "node_modules/.bin"
+      only_local = "node_modules/.bin",
     }),
     null_ls.builtins.formatting.prettier.with({
-      only_local = "node_modules/.bin"
+      only_local = "node_modules/.bin",
     }),
     null_ls.builtins.formatting.black.with({
-      only_local = ".venv/bin"
+      only_local = ".venv/bin",
     }),
     null_ls.builtins.diagnostics.mypy.with({
-      only_local = ".venv/bin"
-    })
+      only_local = ".venv/bin",
+    }),
+    null_ls.builtins.formatting.stylua,
   },
 })
-

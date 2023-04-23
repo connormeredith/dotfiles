@@ -27,7 +27,7 @@ vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 
 vim.opt.list = true
-vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↵"
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↵")
 
 vim.opt.clipboard:append("unnamedplus")

@@ -7,11 +7,11 @@ require("nvim-tree").setup({
     highlight_git = true,
     icons = {
       show = {
-        git = false
-      }
-    }
-  },
-    git = {
-      ignore = false
+        git = false,
+      },
     },
+  },
+  git = {
+    ignore = false,
+  },
 })

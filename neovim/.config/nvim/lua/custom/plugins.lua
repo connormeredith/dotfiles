@@ -10,8 +10,8 @@ return require("packer").startup(function(use)
   use({
     "nvim-tree/nvim-tree.lua",
     requires = {
-      "nvim-tree/nvim-web-devicons"
-    }
+      "nvim-tree/nvim-web-devicons",
+    },
   })
 
   use("tpope/vim-surround")
@@ -19,23 +19,23 @@ return require("packer").startup(function(use)
   use({
     "numToStr/Comment.nvim",
     config = function()
-        require("Comment").setup()
-    end
+      require("Comment").setup()
+    end,
   })
 
-  use {
+  use({
     "nvim-lualine/lualine.nvim",
     requires = {
-      "nvim-tree/nvim-web-devicons"
-    }
-  }
+      "nvim-tree/nvim-web-devicons",
+    },
+  })
 
   use({
     "nvim-telescope/telescope.nvim",
-    tag = '0.1.1',
+    tag = "0.1.1",
     requires = {
-      "nvim-lua/plenary.nvim"
-    }
+      "nvim-lua/plenary.nvim",
+    },
   })
 
   use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
@@ -44,7 +44,7 @@ return require("packer").startup(function(use)
 
   use("airblade/vim-gitgutter")
 
-  use {
+  use({
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
     requires = {
@@ -72,15 +72,15 @@ return require("packer").startup(function(use)
 
       -- Snippets.
       "L3MON4D3/LuaSnip",
-    }
-  }
+    },
+  })
 
-  use {
+  use({
     "windwp/nvim-autopairs",
     config = function()
       require("nvim-autopairs").setup({
-        check_ts = true
+        check_ts = true,
       })
-    end
-  }
+    end,
+  })
 end)

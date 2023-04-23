@@ -1,13 +1,13 @@
 require("lualine").setup({
   options = {
-    theme = "nightfly"
+    theme = "nightfly",
   },
   sections = {
     lualine_a = {
       {
         "filename",
-        path = 1
-      }
-    }
-  }
+        path = 1,
+      },
+    },
+  },
 })
