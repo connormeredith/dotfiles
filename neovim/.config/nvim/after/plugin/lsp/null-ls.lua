@@ -17,6 +17,7 @@ local sources = {
     only_local = ".venv/bin",
   }),
   formatting.stylua,
+  formatting.rustfmt,
 }
 
 -- Format on save.
