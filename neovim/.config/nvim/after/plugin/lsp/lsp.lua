@@ -17,4 +17,13 @@ lsp.configure("lua_ls", {
   },
 })
 
+lsp.on_attach(function(client, bufnr)
+  lsp.default_keymaps({ buffer = bufnr })
+
+  -- Disable tsserver formatting as it conflicts with prettier.
+  if client.name == "tsserver" then
+    client.server_capabilities.documentFormattingProvider = false
+  end
+end)
+
 lsp.setup()
