@@ -11,7 +11,13 @@ require("nvim-tree").setup({
       },
     },
   },
+  view = {
+    side = "right",
+  },
   git = {
     ignore = false,
   },
 })
+
+vim.keymap.set("n", "<leader>ee", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", "<leader>ef", vim.cmd.NvimTreeFindFile)
