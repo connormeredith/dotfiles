@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-SELECTED=$(find ~/repos -type d -mindepth 1 -maxdepth 1 | fzf)
+REPOS=$(find ~/repos -type d -mindepth 1 -maxdepth 1)
+REPOS+=$'\n'
+REPOS+="$HOME/.dotfiles"
+SELECTED=$(echo "$REPOS" | fzf)
 SESSION_NAME=$(basename "$SELECTED" | tr . _)
 
 if ! tmux has-session "$SESSION_NAME" 2>/dev/null; then
