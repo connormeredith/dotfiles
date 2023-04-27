@@ -11,11 +11,12 @@ local sources = {
     only_local = "node_modules/.bin",
   }),
   formatting.black.with({
-    only_local = ".venv/bin",
+    only_local = "venv/bin",
   }),
   diagnostics.mypy.with({
-    only_local = ".venv/bin",
+    only_local = "venv/bin",
   }),
+  diagnostics.ansiblelint,
   formatting.stylua,
   formatting.rustfmt,
 }
