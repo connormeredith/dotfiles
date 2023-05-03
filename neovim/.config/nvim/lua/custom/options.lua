@@ -30,4 +30,7 @@ vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 vim.opt.listchars:append("eol:↵")
 
+-- Auto-complete commands to longest string, then open menu.
+vim.opt.wildmode = "longest,full"
+
 vim.opt.clipboard:append("unnamedplus")
