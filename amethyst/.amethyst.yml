@@ -10,6 +10,14 @@ mod2:
   - option
   - shift
 
+focus-ccw:
+  mod: mod1
+  key: h
+
+focus-cw:
+  mod: mod1
+  key: l
+
 shrink-main:
   mod: mod2
   key: h
