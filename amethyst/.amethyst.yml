@@ -1,0 +1,27 @@
+window-margins: true
+window-margin-size: 10
+
+enables-layout-hud-on-space-change: false
+
+mod1:
+  - option
+
+mod2:
+  - option
+  - shift
+
+shrink-main:
+  mod: mod2
+  key: h
+
+expand-main:
+  mod: mod2
+  key: l
+
+cycle-layout:
+  mod: mod2
+  key: ','
+
+cycle-layout-backward:
+  mod: mod2
+  key: '.'
