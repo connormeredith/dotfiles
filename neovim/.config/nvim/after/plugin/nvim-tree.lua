@@ -17,6 +17,11 @@ require("nvim-tree").setup({
   git = {
     ignore = false,
   },
+  filesystem_watchers = {
+    ignore_dirs = {
+      "node_modules",
+    },
+  },
 })
 
 vim.keymap.set("n", "<leader>ee", vim.cmd.NvimTreeToggle)

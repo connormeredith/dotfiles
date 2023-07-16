@@ -8,7 +8,7 @@ local sources = {
     only_local = "node_modules/.bin",
   }),
   formatting.prettier.with({
-    only_local = "node_modules/.bin",
+    prefer_local = "node_modules/.bin",
   }),
   formatting.black.with({
     only_local = "venv/bin",
