@@ -1,7 +1,5 @@
 vim.g.mapleader = " "
-
--- Reload config.
-vim.keymap.set("n", "<leader>r", ":source $MYVIMRC<CR>")
+vim.g.maplocalleader = " "
 
 -- Move lines up and down.
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
