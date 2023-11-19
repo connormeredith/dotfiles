@@ -6,7 +6,7 @@ return {
   config = function()
     require("lualine").setup({
       options = {
-        theme = "nightfly",
+        theme = "auto",
       },
       sections = {
         lualine_a = {
