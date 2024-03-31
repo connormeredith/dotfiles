@@ -1,0 +1,5 @@
+select-pane -t 1
+split-window -h -l 40%
+split-window -v -l 33%
+select-pane -t 1
+send-keys -t 1 'nvim' Enter
