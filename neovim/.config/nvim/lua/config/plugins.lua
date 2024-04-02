@@ -307,6 +307,7 @@ return {
 
       require("mason-lspconfig").setup({
         ensure_installed = vim.tbl_keys(language_servers),
+        automatic_installation = { exclude = vim.tbl_keys(language_servers) },
         handlers = {
           function(server_name)
             local server = language_servers[server_name] or {}
