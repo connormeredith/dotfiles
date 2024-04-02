@@ -191,7 +191,7 @@ return {
       },
 
       { -- Configure LSP for Neovim config and plugin development.
-        "folks/neodev.nvim",
+        "folke/neodev.nvim",
         opts = {},
       },
     },
