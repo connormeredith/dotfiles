@@ -403,21 +403,12 @@ return {
       vim.keymap.set("n", "<F9>", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
       vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Debug: Toggle UI" })
 
-      dap.configurations = {
-        javascript = {
-          {
-            type = "node2",
-            name = "Launch",
-            request = "launch",
-            program = "${file}",
-            cwd = vim.fn.getcwd(),
-            sourceMaps = true,
-            protocol = "inspector",
-            console = "integratedTerminal",
-          },
-        },
-      }
-      dap.adapters.node2 = {
+      require("dap.ext.vscode").load_launchjs(
+        nil, -- Use the project's default .vscode/launch.json file.
+        { node = { "javascript", "javascriptreact", "typescript", "typescriptreact" } }
+      )
+
+      dap.adapters.node = {
         type = "executable",
         command = "node",
         args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
