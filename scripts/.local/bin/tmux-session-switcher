@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o errexit -o nounset -o pipefail
 
 REPOS=$(find ~/repos -type d -mindepth 1 -maxdepth 1)
 REPOS+=$'\n'
@@ -6,7 +7,7 @@ REPOS+="$HOME/.dotfiles"
 SELECTED=$(echo "$REPOS" | fzf --cycle)
 SESSION_NAME=$(basename "$SELECTED" | tr . _)
 
-if ! tmux has-session "$SESSION_NAME" 2>/dev/null; then
+if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
   tmux new-session -s "$SESSION_NAME" -c "$SELECTED" -d
 fi
 
