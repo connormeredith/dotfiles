@@ -219,6 +219,11 @@ return {
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+          -- Disable tsserver formatting as it conflicts with prettier.
+          if client.name == "tsserver" then
+            client.server_capabilities.documentFormattingProvider = false
+          end
+
           -- Format on save.
           if client and client.supports_method("textDocument/formatting") then
             vim.api.nvim_create_autocmd("BufWritePre", {
@@ -287,12 +292,7 @@ return {
             },
           },
         },
-        tsserver = {
-          capabilities = {
-            -- Disable formatting as it conflicts with prettier.
-            documentFormattingProvider = false,
-          },
-        },
+        tsserver = {},
         eslint = {},
       }
 
