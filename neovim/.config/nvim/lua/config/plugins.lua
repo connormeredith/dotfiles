@@ -413,6 +413,14 @@ return {
         command = "node",
         args = { vim.fn.stdpath("data") .. "/mason/packages/node-debug2-adapter/out/src/nodeDebug.js" },
       }
+      dap.adapters.python = {
+        type = "server",
+        port = "5678",
+        host = "0.0.0.0",
+        options = {
+          source_filetype = "python",
+        },
+      }
     end,
   },
 }
