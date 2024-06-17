@@ -23,19 +23,6 @@ return {
     end,
   },
 
-  { -- Comment visual lines with `gc`.
-    "numToStr/Comment.nvim",
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
-    config = function()
-      require("Comment").setup({
-        -- Support for comments in JSX.
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      })
-    end,
-  },
-
   { -- Rapid file navigation.
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
@@ -46,7 +33,7 @@ return {
       harpoon:setup()
 
       vim.keymap.set("n", "<leader>a", function()
-        harpoon:list():append()
+        harpoon:list():add()
       end)
       vim.keymap.set("n", "<leader>h", function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -179,9 +166,6 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
 
-      -- Support for language servers in Docker containers.
-      "lspcontainers/lspcontainers.nvim",
-
       -- Autocomplete support.
       "hrsh7th/cmp-nvim-lsp",
 
@@ -204,7 +188,6 @@ return {
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
           end
 
-          map("K", vim.lsp.buf.hover, "Hover documentation")
           map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
           map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -214,8 +197,6 @@ return {
           map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
           map("<F2>", vim.lsp.buf.rename, "Rename symbol")
           map("gl", vim.diagnostic.open_float, "Show diagnostic")
-          map("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
-          map("]d", vim.diagnostic.goto_next, "Next diagnostic")
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
