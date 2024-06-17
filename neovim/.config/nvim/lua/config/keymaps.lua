@@ -18,3 +18,10 @@ vim.keymap.set("n", "<leader>e", ":Ex<CR>")
 -- Close buffer.
 vim.keymap.set("n", "<leader>x", ":bw<CR>")
 vim.keymap.set("n", "<leader>X", ":bw!<CR>")
+
+-- Copy python module path to system clipboard.
+vim.keymap.set("n", "<leader>yp", function()
+  local module_path = vim.fn.expand("%:r:gs?/?.?")
+  vim.cmd("let @+='" .. module_path .. "'")
+  vim.print(module_path)
+end)
