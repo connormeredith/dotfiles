@@ -200,8 +200,8 @@ return {
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-          -- Disable tsserver formatting as it conflicts with prettier.
-          if client.name == "tsserver" then
+          -- Disable ts_ls formatting as it conflicts with prettier.
+          if client.name == "ts_ls" then
             client.server_capabilities.documentFormattingProvider = false
           end
 
@@ -273,7 +273,7 @@ return {
             },
           },
         },
-        tsserver = {},
+        ts_ls = {},
         eslint = {},
       }
 
