@@ -8,11 +8,13 @@ return {
   -- Mappings for surrounding text.
   "tpope/vim-surround",
 
-  -- Git integration.
-  "tpope/vim-fugitive",
-
-  -- Show git signs in signcolumn.
-  "airblade/vim-gitgutter",
+  { -- Show git signs in signcolumn.
+    "airblade/vim-gitgutter",
+    init = function()
+      -- Highlight line numbers.
+      vim.g.gitgutter_highlight_linenrs = 1
+    end,
+  },
 
   { -- Colourscheme.
     "folke/tokyonight.nvim",
@@ -102,25 +104,6 @@ return {
       vim.keymap.set("n", "<leader><Space>", builtin.builtin, { desc = "Search Telescope Builtins" })
       vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "Search Old Files" })
     end,
-  },
-
-  { -- Statusline.
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {
-      sections = {
-        lualine_a = {
-          {
-            -- Show filename in section a.
-            "filename",
-            -- Show relative path.
-            path = 1,
-          },
-        },
-      },
-    },
   },
 
   { -- Treesitter.

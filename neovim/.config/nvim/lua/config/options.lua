@@ -43,15 +43,32 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Always show the sign column.
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "yes:2"
 
 -- Customise whitespace characters.
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↵")
 
 -- Auto-complete commands to longest string, then open menu.
 vim.opt.wildmode = "longest,full"
 
 -- Use the system clipboard.
 vim.opt.clipboard:append("unnamedplus")
+
+-- Configure statusline
+vim.o.statusline = table.concat({
+  -- Full file path.
+  " %f",
+  -- Readonly flag.
+  "%r",
+  -- Modified flag.
+  "%m",
+  -- Separator.
+  "%=",
+  -- Filetype.
+  "%{&filetype}",
+  -- Cursor position (row:column).
+  " %3l:%-2c ",
+  -- Percentage through file.
+  " %2p%%",
+}, "")
