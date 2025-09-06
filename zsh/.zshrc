@@ -1,8 +1,34 @@
-export ZSH="$HOME/.oh-my-zsh"
+# https://zsh.sourceforge.io/Doc/Release/Options.html
+autoload -U compinit; compinit
+zstyle ':completion:*:*:*:*:*' menu select
 
-ZSH_THEME="spaceship"
+setopt autocd
+unsetopt share_history
 
-# https://spaceship-prompt.sh/options/
+# Set emacs key bindings.
+bindkey -e
+
+# ^p or up arrow to fuzzy search history forward.
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+bindkey "^p" up-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+
+# ^n or down arrow to fuzzy search history backward.
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^n" down-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+
+# shift + tab to reverse menu search.
+bindkey "^[[Z" reverse-menu-complete
+
+# https://docs.brew.sh/Installation#post-installation-steps
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export BREW_DIR="$(brew --prefix)"
+export HOMEBREW_BUNDLE_FILE="$HOME/Brewfile"
+
+# https://spaceship-prompt.sh
 SPACESHIP_PROMPT_ORDER=(
   dir
   git
@@ -10,35 +36,53 @@ SPACESHIP_PROMPT_ORDER=(
   exit_code
   char
 )
+source "$BREW_DIR/opt/spaceship/spaceship.zsh"
 
-plugins=(git nvm)
-
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
-zstyle ':omz:plugins:nvm' autoload true
-NVM_HOMEBREW=/opt/homebrew/opt/nvm/
-
-# Brew paths and auto-complete.
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export LIBRARY_PATH="$LIBRARY_PATH:/opt/homebrew/lib"
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-source $ZSH/oh-my-zsh.sh
+# https://junegunn.github.io/fzf/shell-integration/#shell-integration
+source <(fzf --zsh)
 
 export EDITOR="nvim"
 
-unsetopt share_history
-
 alias reset="clear && printf '\e[3J'"
-
-# Disable node repl history.
-export NODE_REPL_HISTORY=""
-
-# Keybindings.
-bindkey "^p" up-line-or-beginning-search
-bindkey "^n" down-line-or-beginning-search
-
-# Python modules
-export PATH="$PATH:$HOME/Library/Python/3.9/bin"
 
 # Scripts.
 export PATH="$PATH:$HOME/.local/bin"
+
+lazy_load_nvm() {
+  unset -f nvm
+  unset -f node
+  unset -f npm
+
+  export NVM_DIR=~/.nvm
+  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+}
+
+nvm() {
+  lazy_load_nvm
+  nvm $@
+}
+
+node() {
+  lazy_load_nvm
+  node $@
+}
+
+npm() {
+  lazy_load_nvm
+  npm $@
+}
+
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  if [ -f "$(pwd)/.nvmrc" ]; then
+      nvm use
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+[ -s "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm"
+
+source "$HOME/.zshrc_custom"
