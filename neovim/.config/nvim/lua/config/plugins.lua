@@ -64,34 +64,35 @@ return {
 
   { -- Fuzzyfinder.
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
     },
-    config = function()
-      require("telescope").setup({
-        defaults = {
-          sorting_strategy = "ascending",
-          layout_config = {
-            prompt_position = "top",
-          },
+    opts = {
+      defaults = {
+        sorting_strategy = "ascending",
+        layout_config = {
+          prompt_position = "top",
         },
-        pickers = {
-          git_files = {
-            show_untracked = true,
-          },
-          find_files = {
-            hidden = true,
-          },
+      },
+      pickers = {
+        git_files = {
+          show_untracked = true,
         },
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown(),
-          },
+        find_files = {
+          hidden = true,
         },
-      })
+      },
+      extensions = {
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown(),
+        },
+      },
+    },
+    config = function(_, opts)
+      require("telescope").setup(opts)
 
+      -- Set vim.ui.select to use telescope.
       local load_extension = require("telescope").load_extension
       load_extension("ui-select")
 
@@ -114,33 +115,9 @@ return {
 
   { -- Treesitter.
     "nvim-treesitter/nvim-treesitter",
-    -- dependencies = {
-    --   "nvim-treesitter/nvim-treesitter-textobjects",
-    -- },
     build = ":TSUpdate",
     opts = {
-      -- List of language parsers to install.
-      ensure_installed = {
-        "bash",
-        "css",
-        "dockerfile",
-        "html",
-        "javascript",
-        "json",
-        "lua",
-        "python",
-        "tmux",
-        "tsx",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "yaml",
-      },
-      -- Install parsers synchronously.
-      sync_install = false,
-      -- Automatically install missing parsers.
       auto_install = true,
-      -- Enable syntax highlighting.
       highlight = { enable = true },
     },
     config = function(_, opts)
