@@ -12,16 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  dev = {
+    path = "~/.config/nvim/lua/custom-plugins/",
+  },
   spec = {
-    -- Import plugins.
     import = "config.plugins",
   },
   change_detection = {
-    -- Don't notify when the config is changed.
     notify = false,
   },
   install = {
-    -- Set colourscheme on startup.
     colorscheme = { "tokyonight-moon" },
   },
 })

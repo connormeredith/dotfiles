@@ -1,4 +1,10 @@
 return {
+  { -- Run language servers in Docker containers for certain projects.
+    "docker-lsp",
+    opts = {},
+    dev = true,
+  },
+
   -- Seamless window navigation between nvim and tmux.
   "christoomey/vim-tmux-navigator",
 
@@ -146,162 +152,36 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- Language server installation.
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
 
       -- Autocomplete support.
       "hrsh7th/cmp-nvim-lsp",
 
-      { -- LSP progress notifications.
-        "j-hui/fidget.nvim",
-        opts = {},
-      },
-
-      { -- Configure LSP for Neovim config and plugin development.
-        "folke/neodev.nvim",
-        opts = {},
+      { -- Linting and formatting.
+        "nvimtools/none-ls.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
       },
     },
     config = function()
-      -- Configure LSP keymaps and autocommands.
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-        callback = function(event)
-          local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
-          end
-
-          map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-          map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-          map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-          map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-          map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-          map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-          map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-          map("<F2>", vim.lsp.buf.rename, "Rename symbol")
-          map("gl", vim.diagnostic.open_float, "Show diagnostic")
-
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-          -- Disable ts_ls formatting as it conflicts with prettier.
-          if client.name == "ts_ls" then
-            client.server_capabilities.documentFormattingProvider = false
-          end
-
-          -- Format on save.
-          if client and client.supports_method("textDocument/formatting") then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = event.buf,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = event.buf })
-              end,
-            })
-          end
-
-          -- Highlight references on hover.
-          if client and client.server_capabilities.documentHighlightProvider then
-            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.document_highlight,
-            })
-
-            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.clear_references,
-            })
-          end
-        end,
-      })
-
-      -- Configure language servers.
-      local language_servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-            },
-          },
-        },
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                black = {
-                  enabled = true,
-                },
-                mccabe = {
-                  enabled = false,
-                },
-                pycodestyle = {
-                  enabled = false,
-                },
-                pyflakes = {
-                  enabled = false,
-                },
-                mypy = {
-                  enabled = true,
-                  dmypy = true,
-                  report_progress = true,
-                  live_mode = false,
-                },
-                pylint = {
-                  enabled = true,
-                },
-                rope_completion = {
-                  enabled = true,
-                },
-              },
-            },
-          },
-        },
-        ts_ls = {},
-        eslint = {},
-      }
-
       require("mason").setup()
-
-      local capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        require("cmp_nvim_lsp").default_capabilities()
-      )
-
       require("mason-lspconfig").setup({
-        ensure_installed = vim.tbl_keys(language_servers),
-        automatic_installation = { exclude = vim.tbl_keys(language_servers) },
-        handlers = {
-          function(server_name)
-            local server = language_servers[server_name] or {}
-
-            -- Override default server capabilities, if any.
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-
-            require("lspconfig")[server_name].setup(server)
-          end,
+        ensure_installed = {
+          "eslint",
+          "lua_ls",
+          "ts_ls",
         },
       })
-    end,
-  },
 
-  { -- Linting and formatting.
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
       local null_ls = require("null-ls")
-
       local formatting = null_ls.builtins.formatting
       null_ls.setup({
         sources = {
-          formatting.prettier.with({
-            prefer_local = "node_modules/.bin",
-          }),
-          formatting.rustfmt,
           formatting.stylua,
         },
       })
+
+      require("config.lsp").setup()
     end,
   },
 
