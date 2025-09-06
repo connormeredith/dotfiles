@@ -85,4 +85,6 @@ load-nvmrc
 
 [ -s "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm"
 
-source "$HOME/.zshrc_custom"
+if [[ -a "$HOME/.zshrc_custom" ]]; then
+  source "$HOME/.zshrc_custom"
+fi
