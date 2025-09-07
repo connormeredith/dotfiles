@@ -27,6 +27,7 @@ bindkey "^[[Z" reverse-menu-complete
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export BREW_DIR="$(brew --prefix)"
 export HOMEBREW_BUNDLE_FILE="$HOME/Brewfile"
+export HOMEBREW_NO_ANALYTICS=1
 
 # https://spaceship-prompt.sh
 SPACESHIP_PROMPT_ORDER=(
