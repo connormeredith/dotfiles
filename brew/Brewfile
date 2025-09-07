@@ -1,5 +1,6 @@
 brew "fzf"
 brew "git"
+brew "mise"
 brew "neovim"
 brew "nvm"
 brew "ripgrep"

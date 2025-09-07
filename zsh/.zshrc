@@ -46,45 +46,11 @@ export EDITOR="nvim"
 
 alias reset="clear && printf '\e[3J'"
 
+# https://mise.jdx.dev/installing-mise.html#zsh
+eval "$(mise activate zsh)"
+
 # Scripts.
 export PATH="$PATH:$HOME/.local/bin"
-
-lazy_load_nvm() {
-  unset -f nvm
-  unset -f node
-  unset -f npm
-
-  export NVM_DIR=~/.nvm
-  [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-}
-
-nvm() {
-  lazy_load_nvm
-  nvm $@
-}
-
-node() {
-  lazy_load_nvm
-  node $@
-}
-
-npm() {
-  lazy_load_nvm
-  npm $@
-}
-
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-  if [ -f "$(pwd)/.nvmrc" ]; then
-      nvm use
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
-[ -s "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_DIR/opt/nvm/etc/bash_completion.d/nvm"
 
 if [[ -a "$HOME/.zshrc_custom" ]]; then
   source "$HOME/.zshrc_custom"
