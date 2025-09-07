@@ -1,5 +1,11 @@
+# https://docs.brew.sh/Installation#post-installation-steps
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export BREW_DIR="$(brew --prefix)"
+export HOMEBREW_BUNDLE_FILE="$HOME/Brewfile"
+export HOMEBREW_NO_ANALYTICS=1
+
 # https://zsh.sourceforge.io/Doc/Release/Options.html
-autoload -U compinit; compinit
+autoload -Uz compinit; compinit
 zstyle ':completion:*:*:*:*:*' menu select
 
 setopt autocd
@@ -22,12 +28,6 @@ bindkey "^[[B" down-line-or-beginning-search
 
 # shift + tab to reverse menu search.
 bindkey "^[[Z" reverse-menu-complete
-
-# https://docs.brew.sh/Installation#post-installation-steps
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export BREW_DIR="$(brew --prefix)"
-export HOMEBREW_BUNDLE_FILE="$HOME/Brewfile"
-export HOMEBREW_NO_ANALYTICS=1
 
 # https://spaceship-prompt.sh
 SPACESHIP_PROMPT_ORDER=(
