@@ -7,3 +7,11 @@ brew "spaceship"
 brew "stow"
 brew "stylua"
 brew "tmux"
+
+# ruby-build dependencies.
+# https://github.com/rbenv/ruby-build/wiki#macos
+brew "autoconf"
+brew "gmp"
+brew "libyaml"
+brew "openssl@3"
+brew "readline"
