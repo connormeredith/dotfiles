@@ -7,6 +7,7 @@ brew "spaceship"
 brew "stow"
 brew "stylua"
 brew "tmux"
+brew "tree-sitter-cli"
 
 # ruby-build dependencies.
 # https://github.com/rbenv/ruby-build/wiki#macos

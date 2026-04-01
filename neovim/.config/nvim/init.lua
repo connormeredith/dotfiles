@@ -1,1 +1,3 @@
-require("config")
+require("autocommands")
+require("keymaps")
+require("options")

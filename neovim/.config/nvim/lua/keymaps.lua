@@ -1,6 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Reload config.
+vim.keymap.set("n", "<leader>r", ":source $MYVIMRC<CR>")
+
 -- Visual replace without yanking.
 vim.keymap.set("v", "p", '"_dP')
 
