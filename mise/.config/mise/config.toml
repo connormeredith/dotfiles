@@ -1,5 +1,6 @@
 [tools]
-node = "22"
+node = "24"
+python = "3.14"
 ruby = "3"
 
 [settings]
@@ -7,3 +8,6 @@ idiomatic_version_file_enable_tools = ["node", "ruby"]
 
 [settings.node]
 compile = false
+
+[settings.python]
+uv_venv_auto = "create|source"
