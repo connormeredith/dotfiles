@@ -1,2 +1,3 @@
 /neovim/.config/nvim/docker-lsp/
 !/neovim/.config/nvim/docker-lsp/.gitkeep
+/zsh/*.zsh

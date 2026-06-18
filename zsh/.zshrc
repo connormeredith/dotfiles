@@ -7,9 +7,17 @@ export HOMEBREW_NO_ANALYTICS=1
 # https://zsh.sourceforge.io/Doc/Release/Options.html
 autoload -Uz compinit; compinit
 zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 setopt autocd
-unsetopt share_history
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+setopt inc_append_history
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
 
 # Set emacs key bindings.
 bindkey -e
@@ -49,9 +57,11 @@ alias reset="clear && printf '\e[3J'"
 # https://mise.jdx.dev/installing-mise.html#zsh
 eval "$(mise activate zsh)"
 
+# Load extras (N allows for no matches).
+for _f in "$HOME/.config/zsh/"*.zsh(N); do
+  source "$_f"
+done
+unset _f
+
 # Scripts.
 export PATH="$PATH:$HOME/.local/bin"
-
-if [[ -a "$HOME/.zshrc_custom" ]]; then
-  source "$HOME/.zshrc_custom"
-fi
