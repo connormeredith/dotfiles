@@ -1,7 +1,7 @@
 [tools]
 node = "24"
 python = "3.14"
-ruby = "3"
+ruby = "3.4.9"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "ruby"]
@@ -12,3 +12,6 @@ corepack = true
 
 [settings.python]
 uv_venv_auto = "create|source"
+
+[settings.ruby]
+compile = false

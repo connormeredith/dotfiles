@@ -1,12 +1,3 @@
-# ruby-build dependencies.
-# https://github.com/rbenv/ruby-build/wiki#macos
-brew "autoconf"
-brew "gmp"
-brew "libyaml"
-brew "openssl@3"
-brew "readline"
-brew "curl"
-
 cask "claude-code"
 
 brew "fzf"
